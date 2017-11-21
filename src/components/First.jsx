@@ -18,6 +18,7 @@ class First extends Component {
         this.add = this.add.bind(this);
         this.onAdd = this.onAdd.bind(this);
         this.onChange = this.onChange.bind(this);
+        
         this.state = this.initState();
     }
     initState() {
@@ -29,7 +30,7 @@ class First extends Component {
     add() {
         const vm = this;
         const _num = vm.state.num + 1;
-        vm.setState( f => (
+        vm.setState( () => (
             { num: _num}
         ) )
     }
@@ -61,6 +62,7 @@ class First extends Component {
         /*reder 之后*/
         store.subscribe(this.onChange);
         console.log('2');
+        this.props.childFunc(this.state); // 把子组件的信息传入到父组件(此处传入的是子组件的state信息) 父->子 使用props 子->父 使用回调函数传参
     }
     componentWillReceiveProps(nextProps) {
         // 不一定是 props 父级传入更新触发的 要对比下这2个 真发生改变再是真的传入新值

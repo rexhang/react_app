@@ -29,10 +29,13 @@ class View extends Component{
             name: this.state.name + 1
         })
     }
+    childSend(data){
+        console.log(data);
+    }
     render(){
         return (
             <div>
-                <First onAdd={this.onAdd} nameFunc={{name: this.state.name}} />
+                <First onAdd={this.onAdd} nameFunc={{name: this.state.name}} childFunc={this.childSend} />
                 <Second />
                 <Total />
                 <button onClick={this.adds}>Click Me(send props)</button>
