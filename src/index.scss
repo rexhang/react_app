@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+
+.tipNumber{
+  color: red;
+  margin-right: 16px;
+  font-size: 20px;
+}
+
+.addBtn{
+  width: 60px;
+  height: 40px;
+}
+
+.moduleAdd{
+  margin: 16px auto 16px 16px;
+}
+
+.total{
+  color: #ff7300;
+  font-size: 20px;
+  margin: 16px auto 16px 16px;
+}
+
+
+/* For demo */
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
+/* For form */
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
+.smallWrap{
+  width: 300px;
+}
