@@ -15,6 +15,9 @@ import CheckboxGroups from './components/CheckboxGroups.jsx';
 import {$$} from './tools';
 
 
+
+import Routers from './Routers.jsx';
+
 registerServiceWorker();
 
 const mppx = {
@@ -40,6 +43,16 @@ ReactDOM.render(
     </div>,
     $$('antComponent')
 );
+
+ReactDOM.render(
+    <Routers />,
+    $$('router')
+)
+
+
+
+
+
 
 // const state = {
 //     age: 23,
@@ -69,3 +82,15 @@ ReactDOM.render(
     
 // });
 // console.warn(detailActions)
+
+
+const time = 119;
+function formatTime(time){
+    time = Math.floor(time);
+    let miniutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60);
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${miniutes}分${seconds}秒`
+}
+const times = formatTime(time);
+console.log(times);

@@ -11,6 +11,7 @@ import store from '../actions/Store.jsx';
 const ComponentsName = 'First';
 
 
+// 合理使用生命周期函数(钩子函数)
 class First extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +66,7 @@ class First extends Component {
         this.props.childFunc(this.state); // 把子组件的信息传入到父组件(此处传入的是子组件的state信息) 父->子 使用props 子->父 使用回调函数传参
     }
     componentWillReceiveProps(nextProps) {
+        console.log('receiveSomeThings | 只要父组件更新就会触发子组件此函数 | 所以说不一定是 props 父级传入更新触发的 要对比下这2个 真发生改变再是真的传入新值');
         // 不一定是 props 父级传入更新触发的 要对比下这2个 真发生改变再是真的传入新值
         if (nextProps.nameFunc.name !== this.props.nameFunc.name){
             console.log('receiveSomeThings');
@@ -76,17 +78,27 @@ class First extends Component {
             ) )
         }
     }
-    componentWillUnmount() {
-        /*组件卸载函数*/
-        store.unsubscribe(this.onChange);
-    }
     shouldComponentUpdate(nextProps, nextState) {
         /*每次都重新渲染，可以在这里判断条件决定是否渲染 决定性能的一个钩子函数*/
         // return (nextProps.caption !== this.props.caption) ||
         //     (nextState.value !== this.state.value);
         // 2次状态值不相等的时候渲染 true = 渲染Components 只要有一个参数发生变化都需要渲染一下组件
 
+        // 此处的渲染机制为 当state的值 val和 name变化了 才会更新本组件 | 是让react变得性能超强的函数之一
         return ((nextState.val !== this.state.val) || (nextState.name !== this.state.name) )
+    }
+    componentWillUpdate(nextProps, nextState){
+        // shouldComponentUpdate返回true或者调用forceUpdate之后，componentWillUpdate会被调用。
+        console.log('componentWillUpdate');
+    }
+    componentDidUpdate(){
+        console.log('componentDidUpdate');
+        // 除了首次render之后调用componentDidMount，其它render结束之后都是调用componentDidUpdate。
+        // componentWillMount、componentDidMount和componentWillUpdate、componentDidUpdate可以对应起来。区别在于，前者只有在挂载的时候会被调用；而后者在以后的每次更新渲染之后都会被调用。
+    }
+    componentWillUnmount() {
+        /*组件卸载函数*/
+        store.unsubscribe(this.onChange);
     }
     render() {
         console.log('1');
